@@ -61,9 +61,17 @@
                 barChart: BarChart().barColor('orange'),
             }
         },
+        mounted(){
+          this.refreshPlot();
+        },
+        methods:{
+          refreshPlot: function(){
+              d3.select("#viz").datum(this.numbers).call(this.barChart);
+          }
+        },
         watch:{
-           numbers: function(newValue){
-               d3.select("#viz").datum(newValue).call(this.barChart);
+           numbers: function(){
+               this.refreshPlot();
            }
         }
     }
