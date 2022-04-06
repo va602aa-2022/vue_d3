@@ -1,16 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>First project with D3 and Vue.js</h1>
+    <p>{{numbers}}</p>
+    <button @click="shuffleNumbers()">Shuffle</button>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+const d3 = require('d3');
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+  },
+  data: function() {
+    return {
+      numbers:[2,4,7,8,13],
+    };
+  },
+  methods:{
+    shuffleNumbers: function(){
+      this.numbers = d3
+              .range(Math.round(Math.random() * 20))
+              .map(() => Math.round(Math.random() * 100))
+    }
   }
+
 }
 </script>
 
